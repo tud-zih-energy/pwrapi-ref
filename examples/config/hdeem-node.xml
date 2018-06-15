@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+
+<System>
+
+<Plugins>
+    <plugin name="HDEEM" lib="libpwr_hdeemdev.la" />
+</Plugins>
+
+<Devices>
+    <device name="HDEEM-Dev" plugin="HDEEM" initString="taurusi4015-bmc;x;x" />
+</Devices>
+
+<Objects>
+<obj name="plat" type="Platform">
+    <attributes>
+        <attr name="ENERGY" op="SUM">
+            <src type="child" name="node" />
+        </attr>
+        <attr name="POWER" op="SUM">
+            <src type="child" name="node" />
+        </attr>
+        <attr name="AVG_POWER" op="SUM">
+            <src type="child" name="node" />
+        </attr>
+	<attr name="MIN_POWER" op="SUM">
+	  <src type="child" name="node" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM">
+	  <src type="child" name="node" />
+	</attr>
+    </attributes>
+    <children>
+        <child name="node" />
+    </children>
+</obj>
+
+<obj name="plat.node" type="Node">
+
+    <devices>
+	<dev name="hdeemdev" device="HDEEM-Dev" openString="Blade" />
+    </devices>
+
+    <attributes>
+            <attr name="ENERGY" op="SUM">
+	         <src type="device" name="hdeemdev" />
+	    </attr>
+	    <attr name="POWER" op="SUM">
+	        <src type="device" name="hdeemdev" />
+	    </attr>
+        <attr name="AVG_POWER" op="SUM">
+            <src type="device" name="hdeemdev" />
+        </attr>
+	<attr name="MIN_POWER" op="SUM">
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM">
+	  <src type="device" name="hdeemdev" />
+	</attr>
+   </attributes>
+   <children>
+     <child name="board" />
+   </children>
+</obj>
+ 
+ 
+ <obj name="plat.node.board" type="Board" >
+   <attributes>
+     <attr name="ENERGY" op="SUM">
+       <src type="child" name="socket0" />
+       <src type="child" name="socket1" />
+       <src type="child" name="mem0" />
+       <src type="child" name="mem1" />
+       <src type="child" name="mem2" />
+       <src type="child" name="mem3" />
+     </attr>
+     <attr name="POWER" op="SUM">
+       <src type="child" name="socket0" />
+       <src type="child" name="socket1" />
+       <src type="child" name="mem0" />
+       <src type="child" name="mem1" />
+       <src type="child" name="mem2" />
+       <src type="child" name="mem3" />
+     </attr>
+     <attr name="AVG_POWER" op="SUM">
+       <src type="child" name="socket0" />
+       <src type="child" name="socket1" />
+       <src type="child" name="mem0" />
+       <src type="child" name="mem1" />
+       <src type="child" name="mem2" />
+       <src type="child" name="mem3" />
+     </attr>
+     <attr name="MIN_POWER" op="SUM">
+       <src type="child" name="socket0" />
+       <src type="child" name="socket1" />
+       <src type="child" name="mem0" />
+       <src type="child" name="mem1" />
+       <src type="child" name="mem2" />
+       <src type="child" name="mem3" />
+     </attr>
+     <attr name="MAX_POWER" op="SUM">
+       <src type="child" name="socket0" />
+       <src type="child" name="socket1" />
+       <src type="child" name="mem0" />
+       <src type="child" name="mem1" />
+       <src type="child" name="mem2" />
+       <src type="child" name="mem3" />
+     </attr>
+   </attributes> 
+   <children>
+        <child name="socket0" />
+	<child name="socket1" />
+	<child name="mem0" />
+	<child name="mem1" />
+	<child name="mem2" />
+	<child name="mem3" />
+   </children>
+</obj>
+
+<obj name="plat.node.board.socket0" type="Socket">
+
+    <devices>
+	<dev name="hdeemdev" device="HDEEM-Dev" openString="CPU0" />
+    </devices>
+
+    <attributes>
+	<attr name="ENERGY" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+    </attributes>
+</obj>
+
+<obj name="plat.node.board.socket1" type="Socket">
+
+    <devices>
+	<dev name="hdeemdev" device="HDEEM-Dev" openString="CPU1" />
+    </devices>
+
+    <attributes>
+	<attr name="ENERGY" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+    </attributes>
+</obj>
+
+<obj name="plat.node.board.mem0" type="Memory">
+  <devices>
+    <dev name="hdeemdev" device="HDEEM-Dev" openString="DDR AB" />
+  </devices>
+  
+  <attributes>
+    <attr name="ENERGY" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+    <attr name="POWER" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+  </attributes>
+</obj>
+
+
+<obj name="plat.node.board.mem1" type="Memory">
+  <devices>
+    <dev name="hdeemdev" device="HDEEM-Dev" openString="DDR CD" />
+  </devices>
+  
+  <attributes>
+    <attr name="ENERGY" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+    <attr name="POWER" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+  </attributes>
+</obj>
+
+
+<obj name="plat.node.board.mem2" type="Memory">
+  <devices>
+    <dev name="hdeemdev" device="HDEEM-Dev" openString="DDR EF" />
+  </devices>
+  
+  <attributes>
+    <attr name="ENERGY" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+    <attr name="POWER" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+  </attributes>
+</obj>
+
+<obj name="plat.node.board.mem3" type="Memory">
+  <devices>
+    <dev name="hdeemdev" device="HDEEM-Dev" openString="DDR GH" />
+  </devices>
+  
+  <attributes>
+    <attr name="ENERGY" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+    <attr name="POWER" op="SUM" >
+      <src type="device" name="hdeemdev" />
+    </attr>
+	<attr name="AVG_POWER" op="SUM" >
+            <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MIN_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+	<attr name="MAX_POWER" op="SUM" >
+	  <src type="device" name="hdeemdev" />
+	</attr>
+  </attributes>
+</obj>
+  
+
+
+</Objects>
+</System>

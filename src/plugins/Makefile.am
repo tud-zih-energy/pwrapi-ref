@@ -5,7 +5,8 @@ lib_LTLIBRARIES =	libpwr_rapldev.la \
 			libpwr_wudev.la \
 			libpwr_cpudev.la \
 			libdummy_dev.la \
-			libpwr_redfishdev.la
+			libpwr_redfishdev.la \
+                        libpwr_hdeemdev.la
 
 # Power API Plugins
 if HAVE_POWERGADGET
@@ -70,3 +71,8 @@ libpwr_hpe_power_manager_dev_la_SOURCES = pwr_dev.c pwr_hpe_power_manager_dev.c 
 libpwr_hpe_power_manager_dev_la_CFLAGS = -I$(top_srcdir)/src/pwr $(XMLRPC_C_CPPFLAGS) 
 libpwr_hpe_power_manager_dev_la_LDFLAGS = -version-info 1:0:1 $(XMLRPC_C_LDFLAGS) $(XMLRPC_C_LIBS)
 endif
+
+libpwr_hdeemdev_la_SOURCES = pwr_dev.c pwr_hdeemdev.c libhdeem.so
+libpwr_hdeemdev_la_CFLAGS = -I$(top_srcdir)/src/pwr -I. -lhdeem -lfreeipmi libhdeem.so
+libpwr_hdeemdev_la_LDFLAGS = -version-info 1:0:1 -L.  -lhdeem libhdeem.so
+

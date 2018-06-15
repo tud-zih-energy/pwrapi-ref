@@ -1,4 +1,4 @@
-examples_PROGRAMS = snippet dummyTest simpleTest
+examples_PROGRAMS = snippet dummyTest simpleTest listObjects
 
 # Power API Examples
 snippet_SOURCES = snippet.c
@@ -12,6 +12,10 @@ dummyTest_LDADD = $(top_builddir)/src/pwr/libpwr.la
 simpleTest_SOURCES = simpleTest.cc
 simpleTest_CPPFLAGS = -I$(top_srcdir)/src/pwr
 simpleTest_LDADD = $(top_builddir)/src/pwr/libpwr.la
+
+listObjects_SOURCES = listObjects.c
+listObjects_CPPFLAGS = -I$(top_srcdir)/src/pwr
+listObjects_LDADD = $(top_builddir)/src/pwr/libpwr.la
 
 examplesdir = $(docdir)/examples
 examples_configdir = $(examplesdir)/config
